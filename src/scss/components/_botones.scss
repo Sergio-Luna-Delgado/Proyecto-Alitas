@@ -1,0 +1,31 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.boton {
+    @include m.boton(v.$logoRojo, v.$negro);
+}
+
+.boton-Pendiente {
+    @include m.boton(v.$azul, v.$negro);
+    margin: 0;
+}
+
+.boton-Terminado {
+    @include m.boton(v.$verde, v.$negro);
+    margin: 0;
+}
+
+.botonLink {
+    color: v.$negro;
+    background-color: v.$logoRojo;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    padding: 0.5rem 1rem;
+    margin: 0 2rem;
+    border-radius: 0.5rem;
+
+    @include m.tablet {
+        padding: 1rem;
+        font-size: 1.8rem;
+    }
+}

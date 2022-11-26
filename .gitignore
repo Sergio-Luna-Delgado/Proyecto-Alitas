@@ -1,0 +1,8 @@
+vendor/
+node_modules/
+package-lock.json
+.env
+prueba.txt
+prueba2.txt
+alitas_legendarias.sql
+gulpfile.js

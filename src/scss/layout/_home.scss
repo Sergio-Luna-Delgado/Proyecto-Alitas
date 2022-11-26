@@ -1,0 +1,30 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.gridCards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+
+    @include m.tablet {
+        @include m.grid(2, 1rem);
+    }
+
+    @include m.escritorio {
+        @include m.grid(3, 1rem);
+    }
+
+    button {
+        font-size: calc(1.3rem + .6vw);
+    }
+}
+
+.carta-width{
+    width: 90%;
+}
+
+.carta-height{
+    height: 20rem;
+}

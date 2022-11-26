@@ -1,0 +1,96 @@
+@use 'variables' as v;
+@use 'base/mixins' as m;
+
+html {
+    /* 1rem = 10px */
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: v.$fuente;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nombre-pagina {
+    text-align: center;
+    margin: 5rem 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 2.4rem;
+
+    @include m.tablet {
+        font-size: 3rem
+    }
+}
+
+.nombre-seccion {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 2rem;
+    text-align: center;
+
+    @include m.tablet {
+        font-size: 2.4rem;
+        text-align: justify;
+    }
+}
+
+.descripcion-pagina {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.enlace-pagina {
+    color: v.$negro;
+    text-align: center;
+    font-size: 2rem;
+
+    &:hover {
+        color: v.$negro;
+        text-decoration: underline;
+    }
+}
+
+.contenidoFlex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        margin-bottom: 2rem;
+        width: 15rem;
+
+        @include m.tablet {
+            width: 25rem;
+        }
+    }
+}
+
+.hrTexto {
+    width: 90%;
+    height: 2.3rem;
+    border-bottom: 1px solid v.$negro;
+    text-align: center;
+
+    @include m.tablet {
+        width: 100%;
+    }
+
+    span {
+        font-size: 3rem;
+        padding: 0 1rem;
+        background-color: v.$blanco;
+    }
+}

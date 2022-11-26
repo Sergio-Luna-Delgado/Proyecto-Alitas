@@ -1,0 +1,16 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.inventario-header {
+    display: flex;
+    justify-content: center;
+
+    @include m.tablet {
+        justify-content: flex-start; /* space between si agrego el buscador */
+    }
+
+    .boton-Pendiente {
+        color: v.$negro;
+        font-size: 1.4rem;
+    }
+}

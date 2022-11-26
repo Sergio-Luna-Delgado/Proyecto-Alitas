@@ -1,0 +1,12 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.carrusel-foto {
+    display: block;
+    width: 100% !important;
+    height: 30rem;
+
+    @include m.tablet{
+        height: 60rem;
+    }
+}

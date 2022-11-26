@@ -1,0 +1,56 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.footer {
+    background-color: v.$logoNegro;
+    color: v.$blanco;
+    padding: 3rem;
+    margin-top: 20rem;
+
+    small {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        font-size: 1.4rem;
+        font-style: italic;
+        margin-top: 5rem;
+    }
+
+    .footerGrid {
+        h3 {
+            font-weight: bold;
+            color: v.$logoRojo;
+            font-size: 1.6rem;
+            margin-top: 3rem;
+
+            @include m.tablet {
+                font-size: 2rem;
+                margin-top: 0;
+            }
+        }
+
+        .footerTitulo {
+            margin-top: 0rem !important;
+        }
+
+        p,
+        a {
+            color: v.$blanco;
+            display: block;
+            font-size: 1.4rem;
+            margin: 0;
+
+            @include m.tablet {
+                font-size: 1.8rem;
+            }
+        }
+
+        @include m.tablet {
+            @include m.grid(2, 1rem);
+        }
+
+        @include m.escritorio {
+            @include m.grid(3, 1rem);
+        }
+    }
+}

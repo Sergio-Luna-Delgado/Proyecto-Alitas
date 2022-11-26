@@ -1,0 +1,65 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.pedidos {
+    list-style: none;
+    padding: 0;
+    margin-top: 5rem;
+
+    li {
+        padding: 1rem;
+        border-top: 1px solid v.$negro;
+
+        h3 {
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.6rem;
+            margin-top: 2rem;
+
+            @include m.tablet {
+                font-size: 2rem;
+            }
+        }
+
+        p {
+            font-weight: 700;
+            color: v.$logoRojo;
+            font-size: 1.4rem;
+
+            @include m.tablet {
+                font-size: 1.8rem;
+            }
+        }
+
+        .datosClientes {
+            @include m.tablet {
+                @include m.grid(2, 0.5rem);
+            }
+
+            @include m.escritorio {
+                @include m.grid(4, 1rem);
+            }
+        }
+
+        span,
+        .servicio {
+            font-weight: 400;
+            color: v.$negro;
+        }
+    }
+
+    .total {
+        font-weight: 700;
+        color: v.$logoRojo;
+        font-size: 1.4rem;
+
+        @include m.tablet {
+            font-size: 1.8rem;
+        }
+
+        span {
+            font-weight: 400;
+            color: v.$negro;
+        }
+    }
+}

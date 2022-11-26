@@ -1,0 +1,44 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+
+    .errorTitulo {
+        margin-top: 5rem;
+        text-align: center;
+        color: v.$logoRojo;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 3rem;
+
+        @include m.tablet {
+            font-size: 4rem
+        }
+    }
+
+    .errorImagen {
+        width: 90%;
+
+        @include m.tablet {
+            width: 60%;
+        }
+    }
+}
+
+.mensaje {
+    display: flex;
+    justify-content: center;
+
+    img {
+        margin: 3rem 0;
+        width: 75%;
+
+        @include m.tablet {
+            width: 50%;
+        }
+    }
+}
