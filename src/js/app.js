@@ -12,7 +12,7 @@ async function eliminarProducto(id) {
         try {
             /* Esta es la url que voy a consumir */
             // const url = 'http://localhost:3000/admin/inventario/eliminar';
-            const url = 'https://damp-everglades-80146.herokuapp.com/admin/inventario/eliminar';
+            const url = 'https://shrouded-citadel-51087.herokuapp.com/admin/inventario/eliminar';
 
             /* En jQuery esto equivale al data  */
             const datos = new FormData();
@@ -39,7 +39,7 @@ async function validarComprar(id){
 
     try {
         // const url = 'http://localhost:3000/validarUser';
-        const url = 'https://damp-everglades-80146.herokuapp.com/validarUser';
+        const url = 'https://shrouded-citadel-51087.herokuapp.com/validarUser';
 
         const datos = new FormData();
         datos.append('id', id);

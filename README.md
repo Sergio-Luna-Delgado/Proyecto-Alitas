@@ -12,21 +12,26 @@
 6. src = imagenes, js y estilos scss
 
 ## Archivos
-1. Composer = herramientas para php (variables de entorno y enviar correos)
-2. Gulp = Pre-procesador scss/js tambien para comprimir imagenes
-3. Package = Dependencias de SASS
-4. Router = comprueba rutas y rederiza a la vista
+1. composer.json = herramientas para php (variables de entorno y enviar correos)
+2. gulp.ja = Pre-procesador scss/js tambien para comprimir imagenes
+3. package.ja = Dependencias de SASS
+4. Router.php = comprueba rutas y rederiza a la vista
 
 ## Cosas a tener en cuenta para el deplyoment
 1. Revisar que las variables de entorno includes/.env
 2. Agregar el archivo Procfile
 3. Agregar el archivo public/.htaccess
 4. Agregar el archivo .gitignore
-5. Cambiar las rutas del localhost por las del produccion en el Email
+5. Cambiar las rutas del localhost por las del produccion en el Email y en las peticiones fetch
 
 ## ¿Como empezar a trabajar por primera vez con el proyecto?
-1. Instalar las dependecias de npm con el siguiente comando: `npm install`
-2. Instalar las dependecias de composer con el siguiente comando: `composer update`
+1. En la computadora que se valla a trabajar instalar lo siguiente:
+    * Xampp
+    * Node JS
+    * Composer
+2. Clonar el repositorio de git o descomprimir la carpeta con el proyecto
+3. Instalar las dependecias de npm con el siguiente comando: `npm install`
+4. Instalar las dependecias de composer con el siguiente comando: `composer update`
 
 ## Comandos de Gulp
 1. Ejecutar en la terminal gulp para compilar scss y js: `npx gulp dev`
@@ -40,13 +45,15 @@
 ## Antes de Programar
 1. Seleccionar Fuente(s)
 2. Seleccionar la paleta de colores
-3. Crear la base de datos
+3. Recolectar todas las imagenes que se usaran para el proyecto (Logo y platillos)
+4. Crear la base de datos
 
 ## ¿Como se empezo a trabajar?
 1. Crear el layout principal
 2. En el public/index.php fui creando las rutas
 3. Despues crear los controladores
 4. Diseñar las vistas
+5. Como se valla usando crear los modelos segun se diseño en la bd
 
 ## Vistas
 1. Layout
@@ -62,7 +69,7 @@
 
 ## ¿Donde use Bootstrap?
 * En los contenedores
-* Utilidades (my-5, p-0, text-center)
+* Utilidades (my-5, p-0, text-center, etc)
 * Carrusel de fotos
 * Offcanvas
 * Tablas
