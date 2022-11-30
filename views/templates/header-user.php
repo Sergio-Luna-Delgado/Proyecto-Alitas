@@ -39,7 +39,7 @@
                 <ul class="dropdown-menu" aria-labelledby="opciones">
                     <li><a href="/carrito">Carrito de Compras</a></li>
                     <li><a href="/pedidos">Mis Pedidos</a></li>
-                    <li><a href="/perfil">Mi Perfil</a></li>
+                    <!-- <li><a href="/perfil">Mi Perfil</a></li> -->
                     <li>
                         <hr class="dropdown-divider text-black w-100">
                     </li>

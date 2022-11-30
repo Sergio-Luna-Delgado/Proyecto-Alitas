@@ -27,8 +27,8 @@
         <div class="right">
             <a class="botonLink dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Opciones</a>
             <ul class="dropdown-menu" aria-labelledby="opciones">
-                <li><a href="/docs/Manual_Usuario" target="__blank">Manual de Usuario</a></li>
-                <li><a href="/docs/Manual_Tecnico" target="__blank">Manual Técnico</a></li>
+                <!-- <li><a href="/docs/Manual_Usuario" target="__blank">Manual de Usuario</a></li> -->
+                <!-- <li><a href="/docs/Manual_Tecnico" target="__blank">Manual Técnico</a></li> -->
                 <!-- <li><a href="/cambiarPassword">Cambiar Contraseña</a></li> -->
                 <li>
                     <hr class="dropdown-divider text-black w-100">

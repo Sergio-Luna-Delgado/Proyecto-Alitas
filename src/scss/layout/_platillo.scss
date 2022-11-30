@@ -1,0 +1,49 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.contendorPlatillo {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    gap: 3rem;
+
+    .tituloMobile {
+        font-size: 2.6rem;
+        margin-bottom: 3rem;
+    }
+
+    .tituloDesktop {
+        display: none;
+    }
+
+    img {
+        width: 90%;
+        max-height: 50rem;
+    }
+    
+    h1 {
+        font-weight: bold;
+    }  
+
+    p {
+        font-size: 1.8rem;
+
+        span {
+            color: v.$logoRojo;
+        }
+    }
+
+    @include m.tablet {
+        @include m.grid(2, 0);
+        text-align: left;
+
+        .tituloMobile {
+            display: none;
+        }
+        
+        .tituloDesktop {
+            display: block;
+        }    
+    }
+}

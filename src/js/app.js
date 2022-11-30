@@ -1,12 +1,4 @@
-// document.addEventListener('DOMContentLoaded', function(){
-//     iniciarApp();
-// });
-
-// function iniciarApp(){
-// eliminarProducto();
-// }
-
-/* Se elimina el producto pero primero se muestra una alerta */
+/* Se elimina el producto del inventario pero primero se muestra una alerta */
 async function eliminarProducto(id) {
     if (confirm(`¿Estas seguro de eliminar el registro ${id}?`)) {
         try {
@@ -33,10 +25,10 @@ async function eliminarProducto(id) {
             console.log(error);
         }
     }
-} 
+}
 
-async function validarComprar(id){
-
+/* Muestra una alerta si el usuario ha iniciado sesion primero */
+async function validarComprar(id) {
     try {
         // const url = 'http://localhost:3000/validarUser';
         const url = 'https://alitas-legendarias.herokuapp.com/validarUser';
@@ -69,5 +61,59 @@ async function validarComprar(id){
     }
     else {
         $('#detalles' + id).modal('show');
+    }
+}
+
+/* Se elimina el producto del carrito pero primero se muestra una alerta */
+async function eliminarProductoCarrito(id) {
+    if (confirm(`¿Quieres quitar este platillo del carrito?`)) {
+        try {
+            // const url = 'http://localhost:3000/eliminarPlatillo';
+            const url = 'https://alitas-legendarias.herokuapp.com/eliminarPlatillo';
+
+            const datos = new FormData();
+            datos.append('id', id);
+            const opciones = {
+                method: 'POST',
+                body: datos
+            }
+
+            const resultado = await fetch(url, opciones);
+            const respuesta = await resultado.json();
+
+            alert(respuesta.message);
+            location.reload();
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+/* funcion de compra */
+async function confirmarCompra() {
+    const fecha = new Date();
+    let hora = fecha.toLocaleTimeString();
+    if (confirm(`¿Deseas confirmar la compra?`)) {
+        try {
+            // const url = 'http://localhost:3000/comprar';
+            const url = 'https://alitas-legendarias.herokuapp.com/comprar';
+
+            const datos = new FormData();
+            datos.append('hora', hora);
+            const opciones = {
+                method: 'POST',
+                body: datos
+            }
+
+            const resultado = await fetch(url, opciones);
+            const respuesta = await resultado.json();
+
+            alert(respuesta.message);
+            window.location.href = "/pedidos";
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 }

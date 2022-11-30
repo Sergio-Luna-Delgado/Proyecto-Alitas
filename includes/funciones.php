@@ -38,19 +38,6 @@ function validateCategories(): void
     }
 }
 
-/* Validar que los paneles si existan */
-// function validatePanel(): void 
-// {
-//     $panel = array(
-//         "Ordenes"                => "Ordenes",
-//         "Inventario"              => "Inventario",
-//     );
-
-//     if(!in_array($_GET['panel'], $panel)){
-//         header('location: /404');
-//     }
-// }
-
 function islast(string $actual, string $proximo): bool
 {
     if ($actual !== $proximo) {

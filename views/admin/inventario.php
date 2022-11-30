@@ -9,7 +9,7 @@
     </div>
     <?php if (!empty($productos)) : ?>
         <div class="table-responsive">
-            <table class="table">
+            <table class="table table-striped table-hover">
                 <tr class="text-center fs-4">
                     <th>ID</th>
                     <th>Nombre</th>
@@ -34,7 +34,9 @@
                             <?php echo $producto->descripcion; ?>
                         </td>
                         <td>$<?php echo $producto->precio; ?></td>
-                        <td><img src="/pictures/<?php echo $producto->foto; ?>" alt="<?php echo $producto->foto; ?>" width="150" height="100"></td>
+                        <td>
+                            <img src="/pictures/<?php echo $producto->foto; ?>" alt="<?php echo $producto->foto; ?>" width="150" height="100">
+                        </td>
                         <td>
                             <?php echo $producto->inventario; ?>
                         </td>

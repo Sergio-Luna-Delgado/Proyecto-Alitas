@@ -2,8 +2,9 @@
 
 namespace Controllers;
 
-use Model\Orden;
+use Model\AdminOrden;
 use Model\Producto;
+use Model\Orden;
 use MVC\Router;
 
 class AdminController
@@ -39,7 +40,7 @@ class AdminController
         // echo "</pre>";
         // die();
 
-        $pedidos = Orden::SQL($consulta);
+        $pedidos = AdminOrden::SQL($consulta);
 
         /* Renderizar la vista */
         $router->render('admin/index', [
@@ -181,6 +182,25 @@ class AdminController
                 'status' 	=> 'success',
                 'code' 		=> 200,
                 'message' 	=> 'El producto se elimino correctamente'
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    /* Esta funcion lo manda llamar desde JS Fetch */
+    public static function eliminarOrden()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id']; /* Este id lo traje desde el fetch */
+
+            $orden = Orden::find($id);
+            $orden->delete();
+
+            $data = array(
+                'status' 	=> 'success',
+                'code' 		=> 200,
+                'message' 	=> 'La orden se elimino correctamente'
             );
 
             echo json_encode($data);

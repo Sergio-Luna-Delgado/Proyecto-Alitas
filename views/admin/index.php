@@ -22,7 +22,7 @@
             <?php
             $idOrden = 0;
             foreach ($pedidos as $key => $pedido) :
-                if ($idpedido !== $pedido->id) :
+                if ($idOrden !== $pedido->id) :
                     $total = 0;
             ?>
                     <li>
@@ -37,11 +37,11 @@
                         <h3>Pedido(s)</h3>
                     </li>
                 <?php
-                    $idpedido = $pedido->id;
+                    $idOrden = $pedido->id;
                 endif;
                 $total += $pedido->precio;
                 ?>
-                <div class="table-responsive">
+                <div class="table-responsive table-striped table-hover">
                     <table class="table">
                         <tr class="text-center fs-4">
                             <th>Nombre</th>
@@ -52,18 +52,15 @@
                             <th></th>
                         </tr>
                         <tr class="text-center fs-4">
-                            <td><?php echo $pedido->nombre; ?></td>
+                            <td><?php echo $pedido->producto; ?></td>
                             <td>$<?php echo $pedido->precio; ?></td>
                             <td><?php echo $pedido->cantidad; ?></td>
                             <td>$<?php echo $pedido->total; ?></td>
                             <td class="d-flex justify-content-center">
-                                <button id="botonEstatus" class="boton-<?php echo $pedido->estatus; ?>"><?php echo $pedido->estatus; ?></button> <!-- pasar id input hidden y una accion input hidden-->
+                                <button type="submit" id="botonEstatus" class="boton-<?php echo $pedido->estatus; ?> m-0 mt-md-2" ><?php echo $pedido->estatus; ?></button> <!-- onclick="cambiarEstatus(<php echo $pedido->id; ?>)" -->
                             </td>
                             <td class="d-flex justify-content-center">
-                                <form action="/api/eliminar" method="post">
-                                    <input type="hidden" name="id" value="<?php echo $pedido->id; ?>">
-                                    <input type="submit" value="Eliminar" class="boton m-0">
-                                </form>
+                                <button type="submit" class="boton m-0 mt-md-2" onclick="eliminarOrden(<?php echo $pedido->id; ?>)">Eliminar</button>
                             </td>
                         </tr>
                     </table>
