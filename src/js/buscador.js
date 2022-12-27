@@ -43,8 +43,8 @@ async function cambiarEstatus(id, estatus) {
     estatus === 'Pendiente' ? estatus = 'Terminado' : estatus = 'Pendiente';
 
     try {
-        const url = 'http://localhost:3000/admin/estatus';
-        // const url = 'https://alitas-legendarias.herokuapp.com/admin/estatus';
+        // const url = 'http://localhost:3000/admin/estatus';
+        const url = 'https://alitas-legendarias.herokuapp.com/admin/estatus';
 
         const datos = new FormData();
         datos.append('id', id);
@@ -70,8 +70,8 @@ async function cambiarEstatus(id, estatus) {
 async function eliminarOrden(id) {
     if (confirm(`¿Estas seguro de eliminar el registro ${id}?`)) {
         try {
-            const url = 'http://localhost:3000/admin/eliminar';
-            // const url = 'https://alitas-legendarias.herokuapp.com/admin/eliminar';
+            // const url = 'http://localhost:3000/admin/eliminar';
+            const url = 'https://alitas-legendarias.herokuapp.com/admin/eliminar';
 
             const datos = new FormData();
             datos.append('id', id);

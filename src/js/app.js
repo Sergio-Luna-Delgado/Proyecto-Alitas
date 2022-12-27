@@ -3,8 +3,8 @@ async function eliminarProducto(id) {
     if (confirm(`¿Estas seguro de eliminar el registro ${id}?`)) {
         try {
             /* Esta es la url que voy a consumir */
-            const url = 'http://localhost:3000/admin/inventario/eliminar';
-            // const url = 'https://alitas-legendarias.herokuapp.com/admin/inventario/eliminar';
+            // const url = 'http://localhost:3000/admin/inventario/eliminar';
+            const url = 'https://alitas-legendarias.herokuapp.com/admin/inventario/eliminar';
 
             /* En jQuery esto equivale al data  */
             const datos = new FormData();
@@ -30,8 +30,8 @@ async function eliminarProducto(id) {
 /* Muestra una alerta si el usuario ha iniciado sesion primero */
 async function validarComprar(id) {
     try {
-        const url = 'http://localhost:3000/validarUser';
-        // const url = 'https://alitas-legendarias.herokuapp.com/validarUser';
+        // const url = 'http://localhost:3000/validarUser';
+        const url = 'https://alitas-legendarias.herokuapp.com/validarUser';
 
         const datos = new FormData();
         datos.append('id', id);
@@ -68,8 +68,8 @@ async function validarComprar(id) {
 async function eliminarProductoCarrito(id) {
     if (confirm(`¿Quieres quitar este platillo del carrito?`)) {
         try {
-            const url = 'http://localhost:3000/eliminarPlatillo';
-            // const url = 'https://alitas-legendarias.herokuapp.com/eliminarPlatillo';
+            // const url = 'http://localhost:3000/eliminarPlatillo';
+            const url = 'https://alitas-legendarias.herokuapp.com/eliminarPlatillo';
 
             const datos = new FormData();
             datos.append('id', id);
@@ -99,8 +99,8 @@ async function confirmarCompra() {
     
     if (confirm(`¿Deseas confirmar la compra?`)) {
         try {
-            const url = 'http://localhost:3000/comprar';
-            // const url = 'https://alitas-legendarias.herokuapp.com/comprar';
+            // const url = 'http://localhost:3000/comprar';
+            const url = 'https://alitas-legendarias.herokuapp.com/comprar';
 
             const datos = new FormData();
             datos.append('hora', hora);
@@ -131,8 +131,8 @@ async function actualizarPasword() {
     
     
     try {
-        const url = 'http://localhost:3000/password';
-        // const url = 'https://alitas-legendarias.herokuapp.com/password';
+        // const url = 'http://localhost:3000/password';
+        const url = 'https://alitas-legendarias.herokuapp.com/password';
 
         const datos = new FormData();
         datos.append('passwordActual', passwordActual);
@@ -161,8 +161,8 @@ async function reporteInventario() {
     // const reporteInventario = document.querySelector('#reporteInventario');
     
     try {
-        const url = 'http://localhost:3000/admin/reporte/inventario';
-        // const url = 'https://alitas-legendarias.herokuapp.com/admin/reporte/inventario';
+        // const url = 'http://localhost:3000/admin/reporte/inventario';
+        const url = 'https://alitas-legendarias.herokuapp.com/admin/reporte/inventario';
 
         // const datos = new FormData();
         // datos.append('passwordActual', passwordActual);
