@@ -27,6 +27,8 @@ class Usuario extends ActiveRecord
         $this->email = $args['email'] ?? '';
         $this->password = $args['password'] ?? '';
         $this->password2 = $args['password2'] ?? '';
+        $this->passwordActual = $args['passwordActual'] ?? '';
+        $this->passwordNuevo = $args['passwordNuevo'] ?? '';
         $this->admin = $args['admin'] ?? '0';
         $this->confirmado = $args['confirmado'] ?? '0';
         $this->token = $args['token'] ?? '';
@@ -131,19 +133,6 @@ class Usuario extends ActiveRecord
         return self::$alertasInput;
     }
 
-    /* Revisa si el usuario ya existe */
-    // public function existeUsuario()
-    // {
-    //     $query = "SELECT * FROM " . self::$tabla . " WHERE email = '" . $this->email . "' LIMIT 1";
-    //     $resultado = self::$db->query($query);
-
-    //     if ($resultado->num_rows) {
-    //         self::$alertas['error'][] = 'El correo electronico ya esta registrado';
-    //     }
-
-    //     return $resultado;
-    // }
-
     public function comprobarPasswordAndVerificado($password)
     {
         $resultado = password_verify($password, $this->password);
@@ -153,5 +142,45 @@ class Usuario extends ActiveRecord
         } else {
             return true;
         }
+    }
+
+    public function comprobarActualizarDatos() {
+        if (!$this->nombre) {
+            self::$alertasInput['nombre'] = 'El nombre es obligatorio';
+        }
+        
+        if (!$this->apellido) {
+            self::$alertasInput['apellido'] = 'Los apellidos son obligatorios';
+        }
+
+        if (!$this->telefono) {
+            self::$alertasInput['telefono'] = 'El teléfono es obligatorio';
+        }
+
+        if (!$this->email) {
+            self::$alertasInput['email'] = 'El correo es obligatorio';
+        }
+
+        return self::$alertasInput;
+    }
+
+    public function nuevo_password(): array
+    {
+        if (!$this->passwordActual) {
+            self::$alertas['error'][] = 'El Password Actual no puede ir vacio';
+        }
+        if (!$this->passwordNuevo) {
+            self::$alertas['error'][] = 'El Password Nuevo no puede ir vacio';
+        }
+        if (strlen($this->passwordNuevo < 6)) {
+            self::$alertas['error'][] = 'El Password debe contener al menos 6 caracteres';
+        }
+
+        return self::$alertas;
+    }
+
+    public function comprobar_password(): bool
+    {
+        return password_verify($this->passwordActual, $this->password);
     }
 }

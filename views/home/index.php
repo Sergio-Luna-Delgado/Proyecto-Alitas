@@ -6,23 +6,23 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <picture>
-                        <source src="build/img/carrusel1.avif" type="image/avif">
-                        <source src="build/img/carrusel1.webp" type="image/webp">
-                        <img loading="lazy" class="carrusel-foto" src="build/img/carrusel1.jpg" alt="carrusel 1">
+                        <source srcset="build/img/carrusel1.avif" type="image/avif">
+                        <source srcset="build/img/carrusel1.webp" type="image/webp">
+                        <img class="carrusel-foto" src="build/img/carrusel1.jpg" alt="carrusel 1">
                     </picture>
                 </div>
                 <div class="carousel-item">
                     <picture>
-                        <source src="build/img/carrusel2.avif" type="image/avif">
-                        <source src="build/img/carrusel2.webp" type="image/webp">
-                        <img loading="lazy" class="carrusel-foto" src="build/img/carrusel2.jpg" alt="carrusel 2">
+                        <source srcset="build/img/carrusel2.avif" type="image/avif">
+                        <source srcset="build/img/carrusel2.webp" type="image/webp">
+                        <img class="carrusel-foto" src="build/img/carrusel2.jpg" alt="carrusel 2">
                     </picture>
                 </div>
                 <div class="carousel-item">
                     <picture>
-                        <source src="build/img/carrusel3.avif" type="image/avif">
-                        <source src="build/img/carrusel3.webp" type="image/webp">
-                        <img loading="lazy" class="carrusel-foto" src="build/img/carrusel3.jpg" alt="carrusel 3">
+                        <source srcset="build/img/carrusel3.avif" type="image/avif">
+                        <source srcset="build/img/carrusel3.webp" type="image/webp">
+                        <img class="carrusel-foto" src="build/img/carrusel3.jpg" alt="carrusel 3">
                     </picture>
                 </div>
             </div>

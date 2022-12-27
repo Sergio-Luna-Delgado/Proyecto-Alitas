@@ -6,6 +6,7 @@ use Model\Producto;
 use Model\Orden;
 use Model\OrdenProducto;
 use Model\AdminOrden;
+use Model\Usuario;
 use MVC\Router;
 
 class HomeController
@@ -217,7 +218,7 @@ class HomeController
                     'cantidad' => $articulo['cantidad'],
                     'total' => $articulo['total'],
                     'estatus' => "Pendiente",
-                    'fecha' => date("Y-m-d"),
+                    'fecha' => $_POST['dia'],
                     'hora' => $_POST['hora'],
                     'usuarioId' => $_SESSION['login_user_id']
                 );
@@ -262,7 +263,7 @@ class HomeController
         }
 
         /* Consultar la base de daots */
-        $consulta = "SELECT o.id, o.hora, CONCAT(u.nombre, ' ', u.apellido) AS usuario, u.email, u.telefono, p.nombre AS producto, p.precio, o.cantidad, o.total, o.estatus ";
+        $consulta = "SELECT p.nombre AS producto, p.precio, o.cantidad, o.total, o.estatus, o.fecha ";
         $consulta .= "FROM ordenes o, usuarios u, ordenesproductos op, productos p ";
         $consulta .= "WHERE o.usuarioId=u.id AND op.ordenId=o.id AND op.productoId=p.id ";
         $consulta .= "AND o.usuarioId = {$_SESSION['login_user_id']}";
@@ -286,12 +287,95 @@ class HomeController
         /* Validar que el usuario halla iniciado sesion */
         isAuth();
 
+        $usuario = Usuario::find($_SESSION['login_user_id']);
+        $alertasInput = [];
+        $alertas = [];
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuario->sync($_POST);
+            $alertasInput = $usuario->comprobarActualizarDatos();
+            
+            if(empty($alertasInput)) {
+                /* Verificar que el correo no exista anteriormente */
+                $existeUsuario = Usuario::where('email', $usuario->email);
+
+                if($existeUsuario && $existeUsuario->id !== $usuario->id) {
+                    /* mensaje de error */
+                    Usuario::setAlerta('error', 'Email no válido ya pertenece a otra cuenta');
+                } else {
+                    /* Guardar el usuario */
+                    $usuario->save();
+                    /* Asignar nombre nuevo a la barra */
+                    $_SESSION['login_user_name'] = $usuario->nombre;
+    
+                    Usuario::setAlerta('exito', 'Guardado Correctamente');
+                }
+                $alertas = $usuario->getAlertas();
+            }
         }
 
         /* Renderizar la vista */
         $router->render('home/perfil', [
-            'title' => 'Mi Pefil',
+            'title' => 'Mi Perfil',
+            'usuario' => $usuario,
+            'alertasInput' => $alertasInput,
+            'alertas' => $alertas,
         ]);
+    }
+
+    /* Esta funcion lo manda llamar desde JS Fetch */
+    public static function password()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $passwordActual = $_POST['passwordActual'];
+            $passwordNuevo = $_POST['passwordNuevo'];
+
+            $usuario = Usuario::find($_SESSION['login_user_id']);
+
+            /* sincronizar con los datos del usuario */
+            $usuario->sync($_POST);
+            $alertas = $usuario->nuevo_password();
+
+            if(empty($alertas)) {
+                $resultado = $usuario->comprobar_password();
+
+                if($resultado) {
+                    /* Asignar el nuevo password */
+                    $usuario->password = $usuario->passwordNuevo;
+
+                    /* Eliminar propiedades no necesarias, aunque se puede dejar y no pasara nada ya que no se encuentran en el arreglo columnasDB */
+                    unset($usuario->passwordActual);
+                    unset($usuario->passwordNuevo);
+
+                    /* hasear el nuevo Password */
+                    $resultado = $usuario->hashPassword();
+
+                    /* Guardar el usuario */
+                    $resultado = $usuario->save();
+                    if($resultado){
+                        $data = array(
+                            'status' 	=> 'success',
+                            'code' 		=> 200,
+                            'message' 	=> 'Password Guardado Correctamente'
+                        );
+                    }
+
+                } else {
+                    $data = array(
+                        'status' 	=> 'error',
+                        'code' 		=> 400,
+                        'message' 	=> 'Password Actual Incorrecto'
+                    );
+                }
+            } else {
+                $data = array(
+                    'status' 	=> 'error',
+                    'code' 		=> 400,
+                    'message' 	=> 'No se puede dejar campos vacios y/o el password nuevo debe contener al menos 8 caracteres'
+                );
+            }
+
+            echo json_encode($data);
+        }
     }
 }

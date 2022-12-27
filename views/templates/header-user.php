@@ -5,9 +5,9 @@
                 <img src="/build/img/menu.svg" alt="menu">
                 <a href="/">
                     <picture>
-                        <source src="/build/img/Logo.avif" type="image/avif">
-                        <source src="/build/img/Logo.webp" type="image/webp">
-                        <img loading="lazy" src="/build/img/Logo.png" alt="Logo">
+                        <source srcset="/build/img/Logo.avif" type="image/avif">
+                        <source srcset="/build/img/Logo.webp" type="image/webp">
+                        <img src="/build/img/Logo.png" alt="Logo">
                     </picture>
                 </a>
 
@@ -16,9 +16,9 @@
         <div class="left-desktop">
             <a href="/">
                 <picture>
-                    <source src="/build/img/Logo.avif" type="image/avif">
-                    <source src="/build/img/Logo.webp" type="image/webp">
-                    <img loading="lazy" src="/build/img/Logo.png" alt="Logo">
+                    <source srcset="/build/img/Logo.avif" type="image/avif">
+                    <source srcset="/build/img/Logo.webp" type="image/webp">
+                    <img src="/build/img/Logo.png" alt="Logo">
                 </picture>
             </a>
             <a class="opcionesHeader" href="/?categoria=Alitas">Alitas</a>
@@ -39,7 +39,7 @@
                 <ul class="dropdown-menu" aria-labelledby="opciones">
                     <li><a href="/carrito">Carrito de Compras</a></li>
                     <li><a href="/pedidos">Mis Pedidos</a></li>
-                    <!-- <li><a href="/perfil">Mi Perfil</a></li> -->
+                    <li><a href="/perfil">Mi Perfil</a></li>
                     <li>
                         <hr class="dropdown-divider text-black w-100">
                     </li>

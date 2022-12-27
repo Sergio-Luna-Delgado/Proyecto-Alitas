@@ -7,6 +7,9 @@ use Model\Producto;
 use Model\Orden;
 use MVC\Router;
 
+use Dompdf\Dompdf;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 class AdminController
 {
     public static function index(Router $router)
@@ -58,10 +61,22 @@ class AdminController
 
         $productos = Producto::all();
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            isAdmin();
+
+            $productoBuscador = $_POST['producto'];
+            $consulta = "SELECT * FROM productos WHERE nombre LIKE '%" . $productoBuscador . "%'";
+
+            if(!empty($productoBuscador)) {
+                $productos = Producto::SQL($consulta);
+            }
+        }
+
         /* Renderizar la vista */
         $router->render('admin/inventario', [
             'title' => 'Inventario',
-            'productos' => $productos
+            'productos' => $productos,
+            'productoBuscador' => $productoBuscador ?? ''
         ]);
     }
 
@@ -75,6 +90,7 @@ class AdminController
         $alertasInput = [];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            isAdmin();
             $producto->sync($_POST);
             $alertasInput = $producto->validar();
 
@@ -92,7 +108,7 @@ class AdminController
             }
 
             /* Es mejor que esta alerta esta aqui y no en el modelo */
-            if(empty($producto->foto)){
+            if (empty($producto->foto)) {
                 $alertasInput['foto'] = 'Sube una imagen que represente al platillo';
             }
 
@@ -129,6 +145,7 @@ class AdminController
         $alertasInput = Producto::getAlertas();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            isAdmin();
             $producto->sync($_POST);
             $alertasInput = $producto->validar();
 
@@ -179,9 +196,30 @@ class AdminController
             $producto->delete();
 
             $data = array(
-                'status' 	=> 'success',
-                'code' 		=> 200,
-                'message' 	=> 'El producto se elimino correctamente'
+                'status'     => 'success',
+                'code'         => 200,
+                'message'     => 'El producto se elimino correctamente'
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    /* Esta funcion lo manda llamar desde JS Fetch */
+    public static function estatus()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $estatus = $_POST['estatus'];
+
+            $orden = Orden::find($id);
+            $orden->estatus = $estatus;
+            $orden->save();
+
+            $data = array(
+                'status'     => 'success',
+                'code'         => 200,
+                'message'     => 'El estado de la orden #' . $id . ' es ' . $estatus
             );
 
             echo json_encode($data);
@@ -198,9 +236,9 @@ class AdminController
             $orden->delete();
 
             $data = array(
-                'status' 	=> 'success',
-                'code' 		=> 200,
-                'message' 	=> 'La orden se elimino correctamente'
+                'status'     => 'success',
+                'code'         => 200,
+                'message'     => 'La orden se elimino correctamente'
             );
 
             echo json_encode($data);

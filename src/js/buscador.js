@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function iniciarApp() {
     buscarPorFecha();
-    botonEstatus();
 }
 
 function buscarPorFecha() {
@@ -15,26 +14,55 @@ function buscarPorFecha() {
     });
 }
 
-function botonEstatus() {
-    const botonEstatus = document.querySelectorAll('#botonEstatus');
-    /* Evita errores aunque no es necesario el if */
-    if (botonEstatus !== null) {
-        botonEstatus.forEach(boton => {
-            boton.addEventListener('click', function (e) {
-                const texto = e.target.textContent;
-                if (texto === 'Pendiente') {
-                    boton.textContent = 'Terminado';
-                    boton.classList.remove('boton-Pendiente');
-                    boton.classList.add('boton-Terminado');
+// function botonEstatus() {
+//     const botonEstatus = document.querySelectorAll('#botonEstatus');
+//     /* Evita errores aunque no es necesario el if */
+//     if (botonEstatus !== null) {
+//         botonEstatus.forEach(boton => {
+//             boton.addEventListener('click', function (e) {
+//                 const texto = e.target.textContent;
+//                 if (texto === 'Pendiente') {
+//                     boton.textContent = 'Terminado';
+//                     boton.classList.remove('boton-Pendiente');
+//                     boton.classList.add('boton-Terminado');
 
+//                     cambiarEstatus()
 
-                } else {
-                    boton.textContent = 'Pendiente';
-                    boton.classList.remove('boton-Terminado');
-                    boton.classList.add('boton-Pendiente');
-                }
-            });
-        });
+//                 } else {
+//                     boton.textContent = 'Pendiente';
+//                     boton.classList.remove('boton-Terminado');
+//                     boton.classList.add('boton-Pendiente');
+//                 }
+//             });
+//         });
+//     }
+// }
+
+async function cambiarEstatus(id, estatus) {
+
+    estatus === 'Pendiente' ? estatus = 'Terminado' : estatus = 'Pendiente';
+
+    try {
+        const url = 'http://localhost:3000/admin/estatus';
+        // const url = 'https://alitas-legendarias.herokuapp.com/admin/estatus';
+
+        const datos = new FormData();
+        datos.append('id', id);
+        datos.append('estatus', estatus);
+        const opciones = {
+            method: 'POST',
+            body: datos
+        }
+
+        /* El await espera hasta que descargue todo y detiene la ejecucion de todo lo que este abajo */
+        const resultado = await fetch(url, opciones);
+        const respuesta = await resultado.json();
+
+        alert(respuesta.message);
+        location.reload();
+
+    } catch (error) {
+        console.log(error);
     }
 }
 
@@ -42,8 +70,8 @@ function botonEstatus() {
 async function eliminarOrden(id) {
     if (confirm(`¿Estas seguro de eliminar el registro ${id}?`)) {
         try {
-            // const url = 'http://localhost:3000/admin/eliminar';
-            const url = 'https://alitas-legendarias.herokuapp.com/admin/eliminar';
+            const url = 'http://localhost:3000/admin/eliminar';
+            // const url = 'https://alitas-legendarias.herokuapp.com/admin/eliminar';
 
             const datos = new FormData();
             datos.append('id', id);

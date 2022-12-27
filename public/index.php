@@ -28,7 +28,7 @@ $router->post('/olvide', [LoginController::class, 'olvide']);
 $router->get('/reestablecer', [LoginController::class, 'reestablecer']); /* email */
 $router->post('/reestablecer', [LoginController::class, 'reestablecer']); /* email */
 
-/* Login y Crear cuenta */
+/* Login */
 $router->get('/login', [LoginController::class, 'login']);
 $router->post('/login', [LoginController::class, 'login']);
 $router->get('/logout', [LoginController::class, 'logout']);
@@ -39,11 +39,14 @@ $router->post('/comprar', [HomeController::class, 'comprar']);
 $router->get('/pedidos', [HomeController::class, 'pedidos']);
 $router->get('/perfil', [HomeController::class, 'perfil']);
 $router->post('/perfil', [HomeController::class, 'perfil']);
+$router->post('/password', [HomeController::class, 'password']); /* API */
 
 /* Rutas del admin */
 $router->get('/admin', [AdminController::class, 'index']);
+$router->post('/admin/estatus', [AdminController::class, 'estatus']); /* API */
 $router->post('/admin/eliminar', [AdminController::class, 'eliminarOrden']); /* API */
 $router->get('/admin/inventario', [AdminController::class, 'inventario']);
+$router->post('/admin/inventario', [AdminController::class, 'inventario']);
 $router->get('/admin/inventario/crear', [AdminController::class, 'crear']);
 $router->post('/admin/inventario/crear', [AdminController::class, 'crear']);
 $router->get('/admin/inventario/actualizar', [AdminController::class, 'actualizar']);

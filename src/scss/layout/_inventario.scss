@@ -3,14 +3,16 @@
 
 .inventario-header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    flex-direction: column;
 
     @include m.tablet {
-        justify-content: flex-start; /* space between si agrego el buscador */
+        flex-direction: row;
     }
 
     .boton-Pendiente {
         color: v.$negro;
         font-size: 1.4rem;
+        width: 100%;
     }
 }

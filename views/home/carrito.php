@@ -57,7 +57,7 @@
             </div>
             <!-- <input type="submit" class="boton mt-3" value="Confirmar Compra"> -->
         </form>
-        <button type="submit" class="boton mt-3" onclick="confirmarCompra()">Confirmar Compra</button>
+        <button type="submit" class="boton mt-3 fs-4" onclick="confirmarCompra()">Confirmar Compra</button>
     <?php else : ?>
         <p class="descripcion-pagina">El carrito esta vacio</p>
         <div class="d-flex justify-content-center"><img src="/build/img/cart.gif" alt="error" class="w-75"></div>

@@ -17,5 +17,6 @@
             <p>81 1688 4646</p>
         </div>
     </div>
-    <small>Todos los derechos reservados. Alitas Legendarias (<?php echo date('Y'); ?>)</small>
+    <!-- <small>Todos los derechos reservados. Alitas Legendarias (<php echo date('Y'); ?>)</small> -->
+    <a href="https://sergiolunadel.me" class="politica-privacidad">Sitio web desarrollado por Sergio Luna, visita mi página personal aquí</a>
 </footer>

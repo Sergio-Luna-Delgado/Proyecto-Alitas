@@ -4,8 +4,15 @@
     <h1 class="nombre-pagina"><?php echo $title ?></h1>
 
     <div class="inventario-header my-5">
-        <a href="/admin/inventario/crear" class="boton-Pendiente">Crear Nuevo Producto</a>
-        <!-- <div class="d-none"></div> En futuras versiones agrego un buscador por GET -->
+        <div>
+            <a href="/admin/inventario/crear" class="boton-Pendiente">Crear Nuevo Producto</a>
+        </div>
+        <div>
+            <form action="/admin/inventario" method="post" class="formulario-buscador">
+                <input type="text" name="producto" id="producto" placeholder="Escribe algun producto" value="<?php echo $productoBuscador ?? ''; ?>">
+                <input type="submit" value="Buscar" class="boton">
+            </form>
+        </div>
     </div>
     <?php if (!empty($productos)) : ?>
         <div class="table-responsive">

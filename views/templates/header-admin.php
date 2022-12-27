@@ -6,9 +6,9 @@
             <img src="/build/img/menu.svg" alt="menu">
                 <a href="/admin">
                     <picture>
-                        <source src="/build/img/Logo.avif" type="image/avif">
-                        <source src="/build/img/Logo.webp" type="image/webp">
-                        <img loading="lazy" src="/build/img/Logo.png" alt="Logo">
+                        <source srcset="/build/img/Logo.avif" type="image/avif">
+                        <source srcset="/build/img/Logo.webp" type="image/webp">
+                        <img src="/build/img/Logo.png" alt="Logo">
                     </picture>
                 </a>
             </a>
@@ -16,9 +16,9 @@
         <div class="left-desktop">
             <a href="/admin">
                 <picture>
-                    <source src="/build/img/Logo.avif" type="image/avif">
-                    <source src="/build/img/Logo.webp" type="image/webp">
-                    <img loading="lazy" src="/build/img/Logo.png" alt="Logo">
+                    <source srcset="/build/img/Logo.avif" type="image/avif">
+                    <source srcset="/build/img/Logo.webp" type="image/webp">
+                    <img src="/build/img/Logo.png" alt="Logo">
                 </picture>
             </a>
             <a class="opcionesHeader" href="/admin">Ordenes</a>

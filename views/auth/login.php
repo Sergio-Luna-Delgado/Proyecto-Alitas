@@ -3,9 +3,9 @@
 <section class="container my-5">
     <div class="contenidoFlex">
         <picture>
-            <source src="/build/img/AlitasLegendarias.avif" type="image/avif">
-            <source src="/build/img/AlitasLegendarias.webp" type="image/webp">
-            <img loading="lazy" src="/build/img/AlitasLegendarias.jpg" alt="Alitas Logo">
+            <source srcset="/build/img/AlitasLegendarias.avif" type="image/avif">
+            <source srcset="/build/img/AlitasLegendarias.webp" type="image/webp">
+            <img src="/build/img/AlitasLegendarias.jpg" alt="Alitas Logo">
         </picture>
         <form action="/login" method="post" class="formulario">
 
