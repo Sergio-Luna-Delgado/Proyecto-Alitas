@@ -21,10 +21,21 @@
                     <img src="/build/img/Logo.png" alt="Logo">
                 </picture>
             </a>
-            <a class="opcionesHeader" href="/?categoria=Alitas">Alitas</a>
-            <a class="opcionesHeader" href="/?categoria=Boneless">Boneless</a>
-            <a class="opcionesHeader" href="/?categoria=Papas">Papas</a>
-            <a class="opcionesHeader" href="/?categoria=Combos Legendarios">Combos Legendarios</a>
+            <a class="opcionesHeader" href="/">Inicio</a>
+            <a class="opcionesHeader" href="/nosotros">Sobre Nosotros</a>
+            <a class="opcionesHeader" href="/galeria">Galería</a>
+            <div class="dropdown fs-3 p-3 text-uppercase d-inline">
+                <a href="/menu" class="dropdown-toggle text-white" type="button" id="dropdownMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Menu
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+                    <li><a class="dropdown-item" href="/menu">Todo</a></li>
+                    <li><a class="dropdown-item" href="/?categoria=Alitas">Alitas</a></li>
+                    <li><a class="dropdown-item" href="/?categoria=Boneless">Boneless</a></li>
+                    <li><a class="dropdown-item" href="/?categoria=Papas">Papas</a></li>
+                    <li><a class="dropdown-item" href="/?categoria=Combos Legendarios">Combos Legendarios</a></li>
+                </ul>
+            </div>
         </div>
         <div class="right">
             <?php
@@ -57,6 +68,10 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
+        <a class="offcanva_menu" href="/">Inicio</a>
+        <a class="offcanva_menu" href="/nosotros">Sobre Nosotros</a>
+        <a class="offcanva_menu" href="/galeria">Galería</a>
+        <a class="offcanva_menu" href="/menu">- Menú -</a>
         <a class="offcanva_menu" href="/?categoria=Alitas">Alitas</a>
         <a class="offcanva_menu" href="/?categoria=Boneless">Boneless</a>
         <a class="offcanva_menu" href="/?categoria=Papas">Papas</a>

@@ -209,6 +209,26 @@ class ActiveRecord
         return $resultado;
     }
 
+    /* Traer un total de registros */
+    public static function total($columna = '', $valor = '')
+    {
+        $query = "SELECT COUNT(*) FROM " . static::$tabla;
+        if ($columna) {
+            $query .= " WHERE ${columna} = ${valor}";
+        }
+        $resultado = self::$db->query($query);
+        $total = $resultado->fetch_array();
+
+        return array_shift($total);
+    }
+
+    public static function between($col, $start, $end, $order = 'DESC')
+    {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE ${col} BETWEEN '${start}' AND '${end}' ORDER BY $col ${order}";
+        $resultado = self::QuerySQL($query);
+        return $resultado;
+    }
+
     /* Subida de archivos */
     public function setPhoto($foto)
     {

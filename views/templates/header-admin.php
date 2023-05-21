@@ -21,8 +21,10 @@
                     <img src="/build/img/Logo.png" alt="Logo">
                 </picture>
             </a>
-            <a class="opcionesHeader" href="/admin">Ordenes</a>
+            <a class="opcionesHeader" href="/admin/ordenes">Inicio</a>
+            <a class="opcionesHeader" href="/admin/ordenes">Ordenes</a>
             <a class="opcionesHeader" href="/admin/inventario">Inventario</a>
+            <a class="opcionesHeader" href="/admin/reporte">Reporte de Ventas</a>
         </div>
         <div class="right">
             <a class="botonLink dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Opciones</a>
@@ -46,7 +48,9 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <a class="offcanva_menu" href="/admin">Ordenes</a>
+        <a class="offcanva_menu" href="/admin">Inicio</a>
+        <a class="offcanva_menu" href="/admin/ordenes">Ordenes</a>
         <a class="offcanva_menu" href="/admin/inventario">Inventario</a>
+        <a class="offcanva_menu" href="/admin/reporte">Reporte de Ventas</a>
     </div>
 </div>

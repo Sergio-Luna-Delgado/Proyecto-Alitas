@@ -2,17 +2,35 @@
 
 namespace Controllers;
 
-use Model\AdminOrden;
+use MVC\Router;
+use Model\Usuario;
 use Model\Producto;
 use Model\Orden;
-use MVC\Router;
 
-use Dompdf\Dompdf;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Model\AdminOrden;
+use Model\AdminReporte;
 
 class AdminController
 {
     public static function index(Router $router)
+    {
+        /* Validar que el usuario halla iniciado sesion */
+        isAdmin();
+
+        $totales = array(
+            'users' => Usuario::total(),
+            'categories' => (string)count(Producto::SQL("SELECT categoria from productos GROUP by categoria")),
+            'products' => Producto::total(),
+            'sales' => Orden::total(),
+        );
+
+        $router->render('admin/index', [
+            'title' => 'Dashboard',
+            'totales' => $totales,
+        ]);
+    }
+
+    public static function orden(Router $router)
     {
         /* Validar que el usuario halla iniciado sesion */
         isAdmin();
@@ -46,7 +64,7 @@ class AdminController
         $pedidos = AdminOrden::SQL($consulta);
 
         /* Renderizar la vista */
-        $router->render('admin/index', [
+        $router->render('admin/ordenes', [
             'title' => 'Ordenes',
             'pedidos' => $pedidos,
             // 'pedidos' => [],
@@ -67,7 +85,7 @@ class AdminController
             $productoBuscador = $_POST['producto'];
             $consulta = "SELECT * FROM productos WHERE nombre LIKE '%" . $productoBuscador . "%'";
 
-            if(!empty($productoBuscador)) {
+            if (!empty($productoBuscador)) {
                 $productos = Producto::SQL($consulta);
             }
         }
@@ -243,5 +261,60 @@ class AdminController
 
             echo json_encode($data);
         }
+    }
+
+    public static function reporte(Router $router)
+    {
+        /* Validar que el usuario halla iniciado sesion */
+        isAdmin();
+
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            header('location: /admin/reporte/imrpimir?inicio=' . $_POST['inicio'] . '&fin=' . $_POST['fin']);
+        }
+
+        /* Renderizar la vista */
+        $router->render('admin/reporte', [
+            'title' => 'Reporte de Ventas',
+        ]);
+    }
+
+    public static function imrpimir(Router $router)
+    {
+        /* Validar que el usuario halla iniciado sesion */
+        isAdmin();
+
+        $start = $_GET['inicio'];
+        $startFilter = filter_var($start, FILTER_SANITIZE_NUMBER_INT);
+        if (!$startFilter) {
+            header('location: /admin/reporte');
+        }
+        $startArgs = explode('-', $startFilter);
+        /* Con esto prevengo que el admin invente meses o exceda los dias del mes */
+        if (!checkdate($startArgs[1], $startArgs[2], $startArgs[0])) {
+            header('location: /404');
+        }
+
+        $end = $_GET['fin'] ?? $start;
+        $endFilter = filter_var($end, FILTER_SANITIZE_NUMBER_INT);
+        if (!$endFilter) {
+            header('location: /reports');
+        }
+        $endArgs = explode('-', $endFilter);
+        /* Con esto prevengo que el admin invente meses o exceda los dias del mes */
+        if (!checkdate($endArgs[1], $endArgs[2], $endArgs[0])) {
+            header('location: /404');
+        }
+
+        $ordenes = AdminReporte::SQL("SELECT o.id, o.fecha, p.nombre, p.precio, o.cantidad, o.total FROM ordenes o, productos p, ordenesproductos op where o.id = op.ordenId and p.id = op.productoId and o.fecha BETWEEN '${startFilter}' and '${endFilter}'");
+
+        /* Renderizar la vista */
+        $router->render('admin/imrpimir', [
+            'title' => 'Imprimir',
+            'ordenes' => $ordenes,
+            'inicio' => $startFilter,
+            'fin' => $endFilter,
+            'total' => 0,
+        ]);
     }
 }

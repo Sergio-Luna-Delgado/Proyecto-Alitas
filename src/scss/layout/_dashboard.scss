@@ -1,0 +1,128 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.dashboard {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &__mobile {
+        @include m.tablet {
+            display: none;
+        }
+    }
+
+    &__tablet {
+        display: none;
+        @include m.tablet {
+            display: block;
+        }
+    }
+
+    &__logo {
+        color: v.$blanco;
+        margin: 0;
+    }
+
+    &__grid {
+        display: flex;
+        flex: 1;
+        overflow-y: auto; /* para que se quede estatico mientras el contenido avanza */
+    }
+
+    &__sidebar {
+        display: none;
+
+        @include m.tablet {
+            display: block;
+            background-color: lighten(gray, 10%);
+            width: 15rem;
+            // height: calc(100vh - 9rem);
+            min-height: 100vh;
+        }
+    }
+
+    &__menu {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    &__contenido {
+        width: 100%;
+        padding: 1rem;
+        // overflow-y: scroll; /* arriba abajo */
+
+        @include m.tablet {
+            padding: 3rem 3rem 0 3rem;
+        }
+    }
+}
+
+.dashboard-total {
+    @include m.grid(1, 1rem);
+    
+    @include m.tablet {
+        @include m.grid(2, 1rem);
+    }
+    
+    @include m.escritorio {
+        @include m.grid(4, 1rem);
+    }
+
+    &__content {
+        display: grid;
+        grid-template-columns: 40% 60%;
+    }
+
+    &__left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &--verde {
+            @extend .dashboard-total__left;
+            background-color: v.$verde;
+        }
+
+        &--rojo {
+            @extend .dashboard-total__left;
+            background-color: v.$logoRojo;
+        }
+
+        &--azul {
+            @extend .dashboard-total__left;
+            background-color: v.$azul;
+        }
+
+        &--amarrillo {
+            @extend .dashboard-total__left;
+            background-color: v.$morado;
+        }
+    }
+
+    &__icon {
+        font-size: 5rem;
+        color: v.$blanco;
+    }
+
+    &__right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+.dashboard-table {
+    @include m.grid(1, 1rem);
+    
+    @include m.tablet {
+        @include m.grid(2, 1rem);
+    }
+
+    @include m.escritorio {
+        @include m.grid(3, 3rem);
+    }
+}

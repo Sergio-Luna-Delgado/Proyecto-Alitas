@@ -5,16 +5,20 @@ require_once __DIR__ . '/../includes/app.php';
 use Controllers\AdminController;
 use Controllers\HomeController;
 use Controllers\LoginController;
+use Controllers\PageController;
 use MVC\Router;
 
 $router = new Router();
 
 /* Pagina principal */
-$router->get('/', [HomeController::class, 'index']);
+$router->get('/', [PageController::class, 'index']);
+$router->post('/validarUser', [PageController::class, 'validarUser']); /* API */
+$router->get('/nosotros', [PageController::class, 'nosotros']);
+$router->get('/galeria', [PageController::class, 'galeria']);
+$router->get('/menu', [PageController::class, 'menu']);
 $router->get('/platillo', [HomeController::class, 'platillo']);
 $router->post('/platillo', [HomeController::class, 'platillo']);
 $router->post('/eliminarPlatillo', [HomeController::class, 'eliminarPlatillo']); /* API */
-$router->post('/validarUser', [HomeController::class, 'validarUser']); /* API */
 
 /* Crear una cuenta y confirmar por correo */
 $router->get('/crear', [LoginController::class, 'crear']);
@@ -43,6 +47,7 @@ $router->post('/password', [HomeController::class, 'password']); /* API */
 
 /* Rutas del admin */
 $router->get('/admin', [AdminController::class, 'index']);
+$router->get('/admin/ordenes', [AdminController::class, 'orden']);
 $router->post('/admin/estatus', [AdminController::class, 'estatus']); /* API */
 $router->post('/admin/eliminar', [AdminController::class, 'eliminarOrden']); /* API */
 $router->get('/admin/inventario', [AdminController::class, 'inventario']);
@@ -52,6 +57,10 @@ $router->post('/admin/inventario/crear', [AdminController::class, 'crear']);
 $router->get('/admin/inventario/actualizar', [AdminController::class, 'actualizar']);
 $router->post('/admin/inventario/actualizar', [AdminController::class, 'actualizar']);
 $router->post('/admin/inventario/eliminar', [AdminController::class, 'eliminar']); /* API */
+$router->get('/admin/reporte', [AdminController::class, 'reporte']);
+$router->post('/admin/reporte', [AdminController::class, 'reporte']);
+$router->get('/admin/reporte/imrpimir', [AdminController::class, 'imrpimir']);
+
 
 /* Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador */
 $router->comprobarRutas();

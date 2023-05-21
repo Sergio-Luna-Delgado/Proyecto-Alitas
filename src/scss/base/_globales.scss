@@ -98,3 +98,42 @@ a {
 .logoRojo {
     color: v.$logoRojo;
 }
+
+.text-justify {
+    text-align: justify;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.swiper-grid-column>.swiper-wrapper {
+    flex-direction: row !important;
+}
+
+.swiper-slide .swiper-slide-next {
+    margin-top: 0 !important;
+    margin-right: 0 !important;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 15rem;
+    object-fit: cover;
+
+    @include m.tablet {
+        height: 20rem;
+    }
+
+    @include m.escritorio {
+        height: 30rem;
+    }
+}
+
+.my-10 {
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+}

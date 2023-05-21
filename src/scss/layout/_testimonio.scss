@@ -1,0 +1,45 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.testimonio {
+    background-color: v.$logoRojo;
+    padding: 3rem;
+    height: 70rem;
+
+    @include m.tablet {
+        padding: 6rem;
+        height: 40rem;
+    }
+
+    @include m.escritorio {
+        padding: 10rem;
+    }
+
+    &-footer {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 3rem;
+    }
+
+    &-img {
+        width: 5rem;
+
+        @include m.tablet {
+            width: 10rem;
+        }
+    }
+
+    &-h3 {
+        font-size: 2rem;
+        color: v.$blanco;
+        font-weight: bold;
+        font-style: italic;
+    }
+
+    &-body {
+        font-size: 1.8rem;
+        color: v.$blanco;
+        text-align: justify;
+        line-height: 2;
+    }
+}

@@ -1,10 +1,12 @@
+let host = 'https://alitas-legendarias.herokuapp.com/';
+// let host = 'http://localhost:3000/';
+
 /* Se elimina el producto del inventario pero primero se muestra una alerta */
 async function eliminarProducto(id) {
     if (confirm(`¿Estas seguro de eliminar el registro ${id}?`)) {
         try {
             /* Esta es la url que voy a consumir */
-            // const url = 'http://localhost:3000/admin/inventario/eliminar';
-            const url = 'https://alitas-legendarias.herokuapp.com/admin/inventario/eliminar';
+            const url = host + 'admin/inventario/eliminar';
 
             /* En jQuery esto equivale al data  */
             const datos = new FormData();
@@ -30,8 +32,7 @@ async function eliminarProducto(id) {
 /* Muestra una alerta si el usuario ha iniciado sesion primero */
 async function validarComprar(id) {
     try {
-        // const url = 'http://localhost:3000/validarUser';
-        const url = 'https://alitas-legendarias.herokuapp.com/validarUser';
+        const url = host + 'validarUser';
 
         const datos = new FormData();
         datos.append('id', id);
@@ -68,8 +69,7 @@ async function validarComprar(id) {
 async function eliminarProductoCarrito(id) {
     if (confirm(`¿Quieres quitar este platillo del carrito?`)) {
         try {
-            // const url = 'http://localhost:3000/eliminarPlatillo';
-            const url = 'https://alitas-legendarias.herokuapp.com/eliminarPlatillo';
+            const url = host + '/eliminarPlatillo';
 
             const datos = new FormData();
             datos.append('id', id);
@@ -99,8 +99,7 @@ async function confirmarCompra() {
     
     if (confirm(`¿Deseas confirmar la compra?`)) {
         try {
-            // const url = 'http://localhost:3000/comprar';
-            const url = 'https://alitas-legendarias.herokuapp.com/comprar';
+            const url = host + 'comprar';
 
             const datos = new FormData();
             datos.append('hora', hora);
@@ -131,8 +130,7 @@ async function actualizarPasword() {
     
     
     try {
-        // const url = 'http://localhost:3000/password';
-        const url = 'https://alitas-legendarias.herokuapp.com/password';
+        const url = host + 'password';
 
         const datos = new FormData();
         datos.append('passwordActual', passwordActual);
@@ -161,8 +159,7 @@ async function reporteInventario() {
     // const reporteInventario = document.querySelector('#reporteInventario');
     
     try {
-        // const url = 'http://localhost:3000/admin/reporte/inventario';
-        const url = 'https://alitas-legendarias.herokuapp.com/admin/reporte/inventario';
+        const url = host + 'admin/reporte/inventario';
 
         // const datos = new FormData();
         // datos.append('passwordActual', passwordActual);
@@ -180,4 +177,14 @@ async function reporteInventario() {
     } catch (error) {
         console.log(error);
     }
+}
+
+const btnImprimir = document.querySelector('#btnImprimir'); 
+if (btnImprimir) {
+    btnImprimir.addEventListener('click', function() {
+        const reporteBotones = document.querySelector('#reporteBotones');
+        reporteBotones.classList.toggle('d-none');
+        window.print();
+        reporteBotones.classList.toggle('d-none');
+    });
 }

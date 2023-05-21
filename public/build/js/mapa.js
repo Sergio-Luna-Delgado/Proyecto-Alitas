@@ -1,0 +1,2 @@
+if(document.querySelector("#mapa")){const e=25.678955,t=-100.4924288,a=17,p=L.map("mapa").setView([e,t],a);L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(p),L.marker([e,t]).addTo(p).bindPopup('\n            <h2 class="fs-2 fw-bold">Alitas Legendarias</h2> \n        ').openPopup()}
+//# sourceMappingURL=mapa.js.map

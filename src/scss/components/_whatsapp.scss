@@ -1,0 +1,25 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.whatsapp {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 5rem;
+    margin-right: 5rem;
+    height: 3rem;
+    width: 3rem;
+    z-index: 1;
+
+    &-form {
+        width: 20rem;
+
+        @include m.tablet {
+            width: 25rem
+        }
+
+        @include m.escritorio {
+            width: 30rem
+        }
+    }
+}
